@@ -1,0 +1,65 @@
+// FONT
+@import url("https://fonts.googleapis.com/css2?family=Oswald&family=VT323&display=swap");
+
+//font-family: 'Oswald', sans-serif;
+//font-family: 'VT323', monospace;
+
+// RESET
+@import "reset";
+
+// MAIN
+body {
+  font: 16px/1 "Oswald";
+}
+
+figure {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(10deg, #81fbb8, #28c76f);
+
+  h1 {
+    position: absolute;
+    top: 7vh;
+    left: 4vw;
+    font-size: 0;
+
+    strong {
+      font-size: 50px;
+      line-height: 1px;
+      color: #fff;
+      letter-spacing: 1px;
+    }
+
+    span {
+      font-size: 20px;
+      line-height: 35px;
+      color: #fff;
+      letter-spacing: 1px;
+    }
+  }
+
+  .menu {
+    position: absolute;
+    top: 8vh;
+    right: 4vw;
+    font-size: 27px;
+    color: #fff;
+  }
+
+  // PANEL
+  @import "panel";
+
+  // BTNS
+  @import "btns";
+
+  > p {
+    position: absolute;
+    bottom: 5vh;
+    left: 50%;
+    transform: translate(-50%, 0);
+    font-size: 16px/1;
+    color: #fff;
+  }
+}
