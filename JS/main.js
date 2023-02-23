@@ -4,8 +4,14 @@ const articleArr = frame.querySelectorAll("article");
 const len = articleArr.length;
 const deg = 360 / len;
 
+const names = ["ABugsLife", "Cars", "InsideOut", "MonstersInc", "Ratatouille", "TheGoodDinosaur", "ToyStory", "Up"];
+
 for (let i = 0; i < len; i++) {
   articleArr[i].style.transform = `rotate(${deg * i}deg) translateY(-100vh)`;
+
+  // 사진 부분 일괄 적용
+  const pic = articleArr[i].querySelector(".pic");
+  pic.style.backgroundImage = `url(../img/pixar/${names[i]}.png)`;
 }
 
 // Prev, Next 버튼 액션 처리
