@@ -16,6 +16,12 @@ for (let i = 0; i < len; i++) {
   // 음악 제목 일괄 적용
   const title = articleArr[i].querySelector(".text>h2");
   title.innerHTML = `${names[i]}`;
+
+  // 음악 파일 일괄 적용
+  const audio = document.createElement("audio");
+  audio.setAttribute("src", `../music/pixar/${names[i]}.mp3`);
+  audio.setAttribute("loop", "loop");
+  articleArr[i].append(audio);
 }
 
 // Prev, Next 버튼 액션 처리
@@ -57,17 +63,43 @@ next.addEventListener("click", function () {
   articleArr[active].classList.add("on");
 });
 
-// CD 앨범 회전
+// CD 앨범 회전 & 음악 컨트롤
+let before = 0; //이전 패널 위치 기억용 변수
+
 for (let el of articleArr) {
   const play = el.querySelector(".play");
   const pause = el.querySelector(".pause");
-  const reload = el.querySelector(".relaod");
+  const reload = el.querySelector(".reload");
 
   play.addEventListener("click", function (e) {
+    if (before === 0) {
+      before = e.target;
+    } else if (before !== e.target) {
+      before.closest("article").querySelector(".pic").classList.remove("on");
+      before.closest("article").querySelector("audio").pause();
+      before = e.target;
+    }
+
     el.querySelector(".pic").classList.add("on");
+    el.querySelector("audio").play();
   });
 
   pause.addEventListener("click", function (e) {
     el.querySelector(".pic").classList.remove("on");
+    el.querySelector("audio").pause();
+  });
+
+  reload.addEventListener("click", function (e) {
+    if (before === 0) {
+      before = e.target;
+    } else if (before !== e.target) {
+      before.closest("article").querySelector(".pic").classList.remove("on");
+      before.closest("article").querySelector("audio").pause();
+      before = e.target;
+    }
+
+    el.querySelector(".pic").classList.add("on");
+    el.querySelector("audio").load();
+    el.querySelector("audio").play();
   });
 }
